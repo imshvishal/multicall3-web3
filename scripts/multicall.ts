@@ -11,26 +11,27 @@ async function main() {
 	const Token = await ethers.getContractAt("ERC20Token", TokenAddr);
 	const Multicall = await ethers.getContractAt("Multicall3", MulticallAddr);
 
-	console.log("🅱️  Before Batch Request: Balance -");
+	console.log("🅱️  Before Batch Request: (Balance)");
 	console.log("OWNER:", await Token.balanceOf(owner.address));
-	console.log("USER1", await Token.balanceOf(user1.address));
-	console.log("USER2", await Token.balanceOf(user2.address));
-	console.log("USER3", await Token.balanceOf(user3.address));
+	console.log("USER1:", await Token.balanceOf(user1.address));
+	console.log("USER2:", await Token.balanceOf(user2.address));
+	console.log("USER3:", await Token.balanceOf(user3.address));
 	let result = await Token.approve(Multicall.target, 600);
 	await result.wait();
 
 	// Batch Request (multicall)
-	result = await Multicall.multicall([
+	result = await Multicall.aggregate3([
 		{ target: TokenAddr, callData: Token.interface.encodeFunctionData("transferFrom", [Owner, user1.address, 100]) },
 		{ target: TokenAddr, callData: Token.interface.encodeFunctionData("transferFrom", [Owner, user2.address, 200]) },
 		{ target: TokenAddr, callData: Token.interface.encodeFunctionData("transferFrom", [Owner, user3.address, 300]) },
 	]);
 	await result.wait();
-	console.log("🚀 After Batch Request: Balance -");
+	console.log();
+	console.log("🚀 After Batch Request: (Balance)");
 	console.log("OWNER:", await Token.balanceOf(owner.address));
-	console.log("USER1", await Token.balanceOf(user1.address));
-	console.log("USER2", await Token.balanceOf(user2.address));
-	console.log("USER3", await Token.balanceOf(user3.address));
+	console.log("USER1:", await Token.balanceOf(user1.address));
+	console.log("USER2:", await Token.balanceOf(user2.address));
+	console.log("USER3:", await Token.balanceOf(user3.address));
 }
 
 main().catch((error) => {

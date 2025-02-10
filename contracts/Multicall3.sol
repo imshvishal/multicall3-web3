@@ -19,7 +19,7 @@ contract Multicall3 {
         return target.call(callData);
     }
 
-    function multicall(CallData[] calldata calls) payable external returns (Result[] memory results) {
+    function aggregate3(CallData[] calldata calls) payable external returns (Result[] memory results) {
         results = new Result[](calls.length);
         for (uint256 i = 0; i < calls.length; i++) {
             Result memory result = Result({success: false, returnData: new bytes(0)});
