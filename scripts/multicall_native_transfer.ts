@@ -1,5 +1,4 @@
 import hre, { ethers } from "hardhat";
-import fs from "fs";
 
 async function main() {
 	const MulticallCtrAddr = process.env.MULTICALL_CONTRACT_ADDR as string;
