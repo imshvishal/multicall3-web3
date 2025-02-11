@@ -12,7 +12,7 @@ Multicall3 is a powerful smart contract that allows batching multiple contract c
 Before using Multicall3, ensure that you have:
 
 1. **Node.js and npm** installed.
-2. **Clone the repository** (`git clone https://github.com/5irelabs/multicall3.git`).
+2. **Clone the repository** (`git clone https://github.com/imshvishal/multicall3-web3`).
 3. **Install Packages** (`npm install`).
 4. **Set Environment Variables** for private keys only in `.env` file.
 5. **Multicall3 contract deployed** (or use an existing deployment).
