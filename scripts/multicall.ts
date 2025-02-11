@@ -11,7 +11,7 @@ async function main() {
 	const Token = await ethers.getContractAt("ERC20Token", TokenAddr);
 	const Multicall = await ethers.getContractAt("Multicall3", MulticallAddr);
 
-	console.log("🅱️  Before Batch Request: (Balance)");
+	console.log("\n🅱️  Before Batch Request: (Balance)");
 	console.log("OWNER:", await Token.balanceOf(owner.address));
 	console.log("USER1:", await Token.balanceOf(user1.address));
 	console.log("USER2:", await Token.balanceOf(user2.address));
@@ -21,13 +21,12 @@ async function main() {
 
 	// Batch Request (multicall)
 	result = await Multicall.aggregate3([
-		{ target: TokenAddr, callData: Token.interface.encodeFunctionData("transferFrom", [Owner, user1.address, 100]) },
-		{ target: TokenAddr, callData: Token.interface.encodeFunctionData("transferFrom", [Owner, user2.address, 200]) },
-		{ target: TokenAddr, callData: Token.interface.encodeFunctionData("transferFrom", [Owner, user3.address, 300]) },
+		{ target: TokenAddr, callData: Token.interface.encodeFunctionData("transferFrom", [Owner, user1.address, 100]), allowFailure: false },
+		{ target: TokenAddr, callData: Token.interface.encodeFunctionData("transferFrom", [Owner, user2.address, 200]), allowFailure: false },
+		{ target: TokenAddr, callData: Token.interface.encodeFunctionData("transferFrom", [Owner, user3.address, 300]), allowFailure: false },
 	]);
 	await result.wait();
-	console.log();
-	console.log("🚀 After Batch Request: (Balance)");
+	console.log("\n🚀 After Batch Request: (Balance)");
 	console.log("OWNER:", await Token.balanceOf(owner.address));
 	console.log("USER1:", await Token.balanceOf(user1.address));
 	console.log("USER2:", await Token.balanceOf(user2.address));
