@@ -16,7 +16,7 @@ Before using Multicall3, ensure that you have:
 3. **Install Packages** (`npm install`).
 4. **Set Environment Variables** for private keys only in `.env` file.
 5. **Multicall3 contract deployed** (or use an existing deployment).
-    > `npx hardhat run scripts/deploy_multicall_contract.ts --network <network>` or use existing deployment at `0x1b25Ce9eE090f6d74A8b0C08211b7A6163a9c9c5`
+    > `npx hardhat run scripts/deploy_multicall_contract.ts --network <network>` or use existing deployment at testnet (thunder) at address `0x1b25Ce9eE090f6d74A8b0C08211b7A6163a9c9c5` if you wish to use testnet.
 6. **Set Environment Variables** for multicall contract address `.env` file.
 7. **ERC20 token contract deployed** (for ERC20 batch transactions).
     > `npx hardhat run scripts/deploy_erc20.ts --network <network>`
