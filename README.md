@@ -16,10 +16,10 @@ Before using Multicall3, ensure that you have:
 3. **Install Packages** (`npm install`).
 4. **Set Environment Variables** for private keys only in `.env` file.
 5. **Multicall3 contract deployed** (or use an existing deployment).
-    > `npx hardhat run scripts/deploy_multicall_contract.ts --network <network>` or use existing deployment at testnet (thunder) at address `0x1b25Ce9eE090f6d74A8b0C08211b7A6163a9c9c5` if you wish to use testnet.
+    > `npx hardhat run scripts/deploy_multicall_contract.ts --network thunder` or use existing deployment at testnet (thunder) at address `0x1b25Ce9eE090f6d74A8b0C08211b7A6163a9c9c5` if you wish to use testnet.
 6. **Set Environment Variables** for multicall contract address `.env` file.
 7. **ERC20 token contract deployed** (for ERC20 batch transactions).
-    > `npx hardhat run scripts/deploy_erc20.ts --network <network>`
+    > `npx hardhat run scripts/deploy_erc20.ts --network thunder`
 
 ## 1️⃣ Batch ERC20 Token Transfers [[Script](./scripts/multicall_contract_interaction.ts)]
 
@@ -34,7 +34,7 @@ Before using Multicall3, ensure that you have:
 ### **_Running the Script_**
 
 ```bash
-npx hardhat run scripts/multicall_contract_interaction.ts --network <network>
+npx hardhat run scripts/multicall_contract_interaction.ts --network thunder
 ```
 
 ### **Step 1: Approve Multicall Contract**
@@ -97,7 +97,7 @@ console.log("USER3 BALANCE:", await Token.balanceOf(user3.address));
 ### **_Running the Script_**
 
 ```bash
-npx hardhat run scripts/multicall_native_transfer.ts --network <network>
+npx hardhat run scripts/multicall_native_transfer.ts --network thunder
 ```
 
 ### **Step 1: Execute Transfers Using Multicall3**
@@ -149,6 +149,5 @@ Using **Multicall3**, you can significantly reduce gas fees and optimize smart c
 
 -   **Reduces Gas Fees**: Executes multiple operations in a single transaction.
 -   **Improves Efficiency**: Allows batching various function calls at once.
--   **Supports Both ERC20 & Native token Transactions**: Can handle token transfers and native asset transfers seamlessly.
 
 📌 **Next Steps:** Experiment with adding more transactions in a single batch or integrate batch calls into your dApps for better performance!
